@@ -15,7 +15,7 @@
  */
 
 #include "zplit_mini.h"
-#include "quantum/rgb_matrix.h"
+
 
 // Optional override functions below.
 // You can leave any or all of these undefined.
@@ -49,21 +49,49 @@ bool led_update_kb(led_t led_state) {
     return led_update_user(led_state);
 }
 */
+#ifdef RGBALL
 
-const led_config_t g_led_config= { 
-	{
-		{  3,  2,  1,  0 }, \
-		{  4,  5,  6,  7 }, \
-		{ 11, 10,  9,  8 }  \
-	}, 
-	{
-		{ 0,   0 }, { 75,   0 }, { 149,   0 }, { 224,   0 }, \
-		{ 0, 112 }, { 75, 112 }, { 149, 112 }, { 224, 112 }, \
-		{ 0, 224 }, { 75, 224 }, { 149, 224 }, { 224, 224 }  \
-	}, 
-	{
-		LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, \
-		LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, \
-		LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT 
-	} 
-};
+	led_config_t g_led_config = { 
+		{
+			{  0,  1,  2,  3 }, \
+			{  7,  6,  5,  4 }, \
+			{ 8, 9,  10,  11 },
+			{ 12, 13, 14, 15} \
+		}, 
+		{
+			{ 	0,   0 }, {  75,   0 }, { 149,   0 }, { 224,   0 }, \
+			{ 224, 112 }, { 149, 112 }, {  75, 112 }, {   0, 112 }, \
+			{   0, 224 }, {  75, 224 }, { 149, 224 }, { 224, 224 },  \
+			{ 0, 1 }, { 1, 224 }, { 224, 223 }, { 224, 1 }  \
+		}, 
+		{
+			LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, \
+			LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, \
+			LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, \
+			LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT  \
+		} 
+	};
+
+#elif RGB_MATRIX_ENABLE
+
+	led_config_t g_led_config = { 
+		{
+			{  0,  1,  2,  3 }, \
+			{  7,  6,  5,  4 }, \
+			{ 8, 9,  10,  11 }, \
+		}, 
+		{
+			{ 	0,   0 }, {  75,   0 }, { 149,   0 }, { 224,   0 }, \
+			{ 224, 112 }, { 149, 112 }, {  75, 112 }, {   0, 112 }, \
+			{   0, 224 }, {  75, 224 }, { 149, 224 }, { 224, 224 },  \
+			/*{ 0, 0 }, { 0, 224 }, { 224, 224 }, { 224, 0 }  \*/
+		}, 
+		{
+			LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, \
+			LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, \
+			LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, \
+			/*LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW, LED_FLAG_UNDERGLOW \*/
+		} 
+	};
+
+#endif

@@ -30,14 +30,14 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
     [_BASE] = LAYOUT(
-        RGB_TOG,   RGB_HUI,     RGB_SAI, RGB_VAI, \
-        KC_LSFT,  RGB_HUD,     RGB_SAD, RGB_VAD, \
-        RGB_RMOD,  RGB_MOD,  RGB_SPD, RGB_SPI \
+        KC_ESC,   KC_Z,     KC_Y, KC_BSPACE, \
+        KC_LSFT,  KC_C,     KC_V, KC_ENT, \
+        KC_LCTL,  MO(_FN),  KC_DEL, KC_SPC \
     ),
     [_FN] = LAYOUT(
-        KC_ESC,   KC_Q,     KC_W, KC_E, \
-        KC_LSFT,  KC_Z,     KC_X, KC_F, \
-        KC_LCTL,  KC_LALT,  KC_C, KC_V \
+        KC_ESC,   KC_Q,     RGB_HUI, RGB_VAI, \
+        KC_LSFT,  KC_C,     RGB_HUD, RGB_VAD, \
+        KC_LCTL,  MO(_FN),  RGB_RMOD, RGB_MOD \
     )
 };
 

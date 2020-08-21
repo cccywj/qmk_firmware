@@ -28,10 +28,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DESCRIPTION a cute staggered macropad
 
 /* key matrix size */
-#define MATRIX_ROWS 2
-#define MATRIX_COLS 3
-
-/* key matrix size */
 #define MATRIX_ROWS 3
 #define MATRIX_COLS 4
 
@@ -61,33 +57,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define BACKLIGHT_BREATHING
 // #define BACKLIGHT_LEVELS 3
 
-#define RGB_DI_PIN B3
-#define DRIVER_LED_TOTAL 12
+#ifdef RGB_MATRIX_ENABLE
+   #define RGB_DI_PIN B3
+   #define DRIVER_LED_TOTAL 12
+   #define RGBLED_NUM 12
+#else
+   #define RGB_DI_PIN B2
+   #define DRIVER_LED_TOTAL 4
+   #define RGBLED_NUM 4
+#endif
+
 #ifdef RGB_DI_PIN
-#define RGBLED_NUM 12
-#define RGBLIGHT_HUE_STEP 8
-#define RGBLIGHT_SAT_STEP 8
-#define RGBLIGHT_VAL_STEP 8
-#define RGBLIGHT_LIMIT_VAL 255 /* The maximum brightness level */
-#define RGBLIGHT_SLEEP  /* If defined, the RGB lighting will be switched off when the host goes to sleep */
-// /*== all animations enable ==*/
-//   #define RGBLIGHT_ANIMATIONS
-// /*== or choose animations ==*/
-//   #define RGBLIGHT_EFFECT_BREATHING
-//   #define RGBLIGHT_EFFECT_RAINBOW_MOOD
-//   #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-//   #define RGBLIGHT_EFFECT_SNAKE
-//   #define RGBLIGHT_EFFECT_KNIGHT
-//   #define RGBLIGHT_EFFECT_CHRISTMAS
-//   #define RGBLIGHT_EFFECT_STATIC_GRADIENT
-#define RGBLIGHT_EFFECT_RGB_TEST
-//   #define RGBLIGHT_EFFECT_ALTERNATING
-// /*== customize breathing effect ==*/
-//   /*==== (DEFAULT) use fixed table instead of exp() and sin() ====*/
-//   #define RGBLIGHT_BREATHE_TABLE_SIZE 256      // 256(default) or 128 or 64
-//   /*==== use exp() and sin() ====*/
-//   #define RGBLIGHT_EFFECT_BREATHE_CENTER 1.85  // 1 to 2.7
-//   #define RGBLIGHT_EFFECT_BREATHE_MAX    255   // 0 to 255
+   #define RGBLIGHT_HUE_STEP 8
+   #define RGBLIGHT_SAT_STEP 8
+   #define RGBLIGHT_VAL_STEP 8
+   //#define RGBLED_NUM 16
+   //#define RGBLIGHT_HUE_STEP 8
+   //#define RGBLIGHT_SAT_STEP 8
+   //#define RGBLIGHT_VAL_STEP 8
+   //#define RGBLIGHT_LIMIT_VAL 255 /* The maximum brightness level */
+   //#define RGBLIGHT_SLEEP  /* If defined, the RGB lighting will be switched off when the host goes to sleep */
+   // /*== all animations enable ==*/
+   #define RGBLIGHT_ANIMATIONS
+   // /*== or choose animations ==*/
+   //#define RGBLIGHT_EFFECT_BREATHING
+
+   #define RGBLIGHT_LIMIT_VAL 255
+
+   //   #define RGBLIGHT_MODE_RAINBOW_MOOD
+   //   #define RGBLIGHT_EFFECT_KNIGHT
+   //   #define RGBLIGHT_EFFECT_CHRISTMAS
+   //   #define RGBLIGHT_EFFECT_STATIC_GRADIENT
+   //   #define RGBLIGHT_EFFECT_RGB_TEST
+   //   #define RGBLIGHT_EFFECT_ALTERNATING
+   // /*== customize breathing effect ==*/
+   //   /*==== (DEFAULT) use fixed table instead of exp() and sin() ====*/
+   //   #define RGBLIGHT_BREATHE_TABLE_SIZE 256      // 256(default) or 128 or 64
+   //   /*==== use exp() and sin() ====*/
+   //   #define RGBLIGHT_EFFECT_BREATHE_CENTER 1.85  // 1 to 2.7
+   //   #define RGBLIGHT_EFFECT_BREATHE_MAX    255   // 0 to 255
 #endif
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
@@ -200,6 +208,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
 
+#define NO_ACTION_LAYER
+#define NO_ACTION_TAPPING
+
 /*
  * MIDI options
  */
@@ -254,3 +265,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Bootmagic Lite key configuration */
 // #define BOOTMAGIC_LITE_ROW 0
 // #define BOOTMAGIC_LITE_COLUMN 0
+
+#ifndef NO_DEBUG
+#define NO_DEBUG
+#endif // !NO_DEBUG
+#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
+#define NO_PRINT
+#endif // !NO_PRINT

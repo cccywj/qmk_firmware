@@ -16,14 +16,21 @@
 
 #pragma once
 
-#include "quantum.h"
+// place overrides here
+#undef MATRIX_ROWS
+#define MATRIX_ROWS 4
 
-/* This is a shortcut to help you visually see your layout.
- *
- * The first section contains all of the arguments representing the physical
- * layout of the board and position of the keys.
- *
- * The second converts the arguments into a two-dimensional array which
- * represents the switch matrix.
- */
-#define LAYOUT( k00, k01, k02, k03, k10, k11, k12, k13, k20, k21, k22, k23 ){ { k00, k01, k02, k03 },  { k10, k11, k12, k13 },  { k20, k21, k22, k23 } }
+#undef MATRIX_ROW_PINS
+#define MATRIX_ROW_PINS { D2, F4, F6, F5 }
+
+#define RGBALL
+
+#undef RGB_DI_PIN
+#undef DRIVER_LED_TOTAL
+#undef RGBLED_NUM
+
+#define RGB_DI_PIN B3
+#define DRIVER_LED_TOTAL 16
+#define RGBLED_NUM 16
+
+#define RGB_MATRIX_KEYPRESSES

@@ -10,6 +10,9 @@
 #endif
 #endif
 
+#undef USE_I2C
+
+#ifndef USE_I2C
 // Standard Keymap
 // (TRRS jack on the left half is to the right, TRRS jack on the right half is to the left)
 #define LAYOUT( \
@@ -30,3 +33,5 @@
 	{ R35, KC_NO, R34, R33, R32, R31, KC_NO, R30 }, \
 	{ KC_NO, KC_NO, R44, KC_NO, R43, R42, R41, R40 } \
 }
+
+#endif

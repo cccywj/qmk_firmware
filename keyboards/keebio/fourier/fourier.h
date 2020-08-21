@@ -7,32 +7,36 @@
 #include "quantum.h"
 
 #define LAYOUT( \
-    LA1, LA2, LA3, LA4, LA5, LA6, RA1, RA2, RA3, RA4, RA5, RA6, RA7, \
-    LB1, LB2, LB3, LB4, LB5, LB6, RB1, RB2, RB3, RB4, RB5,      RB7, \
-    LC1, LC2, LC3, LC4, LC5, LC6, RC1,      RC3, RC4, RC5, RC6, RC7, \
-    LD1, LD2, LD3, LD4, LD5,      RD1,           RD4, RD5, RD6, RD7 \
-    ) \
-    { \
-        { LA1, LA2, LA3, LA4, LA5, LA6, KC_NO}, \
-        { LB1, LB2, LB3, LB4, LB5, LB6, KC_NO}, \
-        { LC1, LC2, LC3, LC4, LC5, LC6, KC_NO}, \
-        { LD1, LD2, LD3, LD4, LD5, KC_NO, KC_NO}, \
-        { RA1, RA2, RA3, RA4, RA5, RA6, RA7}, \
-        { RB1, RB2, RB3, RB4, RB5, KC_NO, RB7}, \
-        { RC1, KC_NO, RC3, RC4, RC5, RC6, RC7}, \
-        { RD1, KC_NO, KC_NO, RD4, RD5, RD6, RD7} \
-    }
+		L00, L01, L02, L03, L04, L05, L06, R00, R01, R02, R03, R04, R05, R06, R07,\
+	   L10,   L11, L12, L13, L14, L15, L16, R10, R11, R12, R13, R14, R15,    R16, \
+	  L20,   L21, L22, L23, L24, L25, L26, R20, R21, R22, R23, R24,         R25, \
+	 L30,     L31, L32, L33, L34, L35, R30, R31, R32, R33, R34,            R35, \
+    L40,     L41,  L42,  L43,    L44,   R40,   R41,  R42,  R43,  R44 \
+) { \
+	{ KC_NO, L00, L01, L02, L03, L04, L05, L06}, \
+	{ KC_NO, L10, L11, L12, L13, L14, L15, L16 }, \
+	{ KC_NO, L20, L21, L22, L23, L24, L25, L26 }, \
+	{ KC_NO, L30, L31, L32, L33, L34, L35, KC_NO }, \
+	{ L40, L41, L42, L43, KC_NO, L44, KC_NO, KC_NO }, \
+	{ R07, R06, R05, R04, R03, R02, R01, R00 }, \
+	{ R16, R15, R14, R13, R12, R11, KC_NO, R10 }, \
+	{ R25, KC_NO, R24, R23, R22, R21, KC_NO, R20 }, \
+	{ R35, KC_NO, R34, R33, R32, R31, KC_NO, R30 }, \
+	{ R44, R43, R42, R41, KC_NO, R40, KC_NO, KC_NO } \
+}
 
 // Used to create a keymap using only KC_ prefixed keys
 #define LAYOUT_kc( \
-    LA1, LA2, LA3, LA4, LA5, LA6, RA1, RA2, RA3, RA4, RA5, RA6, RA7, \
-    LB1, LB2, LB3, LB4, LB5, LB6, RB1, RB2, RB3, RB4, RB5,      RB7, \
-    LC1, LC2, LC3, LC4, LC5, LC6, RC1,      RC3, RC4, RC5, RC6, RC7, \
-    LD1, LD2, LD3, LD4, LD5,      RD1,      RD4, RD5, RD6, RD7 \
+        L00, L01, L02, L03, L04, L05, L06, R00, R01, R02, R03, R04, R05, R06, R07,\
+	   L10,   L11, L12, L13, L14, L15, L16, R10, R11, R12, R13, R14, R15,    R16, \
+	  L20,   L21, L22, L23, L24, L25, L26, R20, R21, R22, R23, R24,         R25, \
+	 L30,     L31, L32, L33, L34, L35, R30, R31, R32, R33, R34,            R35, \
+    L40,     L41,  L42,  L43,    L44,   R40,   R41,  R42,  R43,  R44 \
     ) \
     LAYOUT( \
-        KC_##LA1, KC_##LA2, KC_##LA3, KC_##LA4, KC_##LA5, KC_##LA6, KC_##RA1, KC_##RA2, KC_##RA3, KC_##RA4, KC_##RA5, KC_##RA6, KC_##RA7, \
-        KC_##LB1, KC_##LB2, KC_##LB3, KC_##LB4, KC_##LB5, KC_##LB6, KC_##RB1, KC_##RB2, KC_##RB3, KC_##RB4, KC_##RB5,           KC_##RB7, \
-        KC_##LC1, KC_##LC2, KC_##LC3, KC_##LC4, KC_##LC5, KC_##LC6, KC_##RC1,           KC_##RC3, KC_##RC4, KC_##RC5, KC_##RC6, KC_##RC7, \
-        KC_##LD1, KC_##LD2, KC_##LD3, KC_##LD4, KC_##LD5,           KC_##RD1,                     KC_##RD4, KC_##RD5, KC_##RD6, KC_##RD7 \
+        KC_##L00, KC_##L01, KC_##L02, KC_##L03, KC_##L04, KC_##L05, KC_##L06, KC_##R00, KC_##R01, KC_##R02, KC_##R03, KC_##R04, KC_##R05, KC_##R06, KC_##R07,\
+	   KC_##L10,   KC_##L11, KC_##L12, KC_##L13, KC_##L14, KC_##L15, KC_##L16, KC_##R10, KC_##R11, KC_##R12, KC_##R13, KC_##R14, KC_##R15,    KC_##R16, \
+	  KC_##L20,   KC_##L21, KC_##L22, KC_##L23, KC_##L24, KC_##L25, KC_##L26, KC_##R20, KC_##R21, RKC_##22, KC_##R23, KC_##R24,         KC_##R25, \
+	 KC_##L30,     KC_##L31, KC_##L32, KC_##L33, KC_##L34, KC_##L35, KC_##R30, KC_##R31, KC_##R32, KC_##R33, KC_##R34,            KC_##R35, \
+    KC_##L40,     KC_##L41,  KC_##L42,  KC_##L43,    KC_##L44,   KC_##R40,   KC_##R41,  KC_##R42,  KC_##R43,  KC_##R44 \
     )

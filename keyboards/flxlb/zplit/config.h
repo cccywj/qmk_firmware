@@ -1,5 +1,5 @@
 /*
-Copyright 2020 FluxLab
+Copyright 2021 fluxlab
 Copyright 2015 Jack Humbert
 
 This program is free software: you can redistribute it and/or modify
@@ -21,11 +21,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x3060
+#define VENDOR_ID       0x7076
+#define PRODUCT_ID      0x0001
 #define DEVICE_VER      0x0001
-#define MANUFACTURER    FluxLab
-#define PRODUCT         Zplit
+#define MANUFACTURER    fluxlab
+#define PRODUCT         fluxlab zplit
 #define DESCRIPTION     An elegant split keyboard
 
 /* key matrix size */
@@ -54,7 +54,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SELECT_SOFT_SERIAL_SPEED 1
 // #define USE_I2C
 #define SPLIT_USB_DETECT
-#define SPLIT_USB_TIMEOUT 2000
+#define SPLIT_USB_TIMEOUT 500
+
+#define ENCODERS_PAD_A { B0 }
+#define ENCODERS_PAD_B { D2 }
+#define ENCODERS_PAD_A_RIGHT { B0 }
+#define ENCODERS_PAD_B_RIGHT { D2 }
+#define ENCODER_RESOLUTION 4
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE
@@ -62,6 +68,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LOCKING_RESYNC_ENABLE
 
 /* ws2812 RGB LED */
+#define RGB_DI_PIN D3
+#define RGBLED_NUM 16
+#define RGBLIGHT_LED_MAP { 0, 1, 2, 3, 4, 5, 6, 7, 15, 14, 13, 12, 11, 10, 9, 8}
+#define RGBLED_SPLIT { 8, 8 }
+#define RGBLIGHT_SPLIT
+#define RGBLIGHT_ANIMATIONS
 
 /*
  * Feature disable options
